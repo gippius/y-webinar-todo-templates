@@ -1,0 +1,13 @@
+@import url('./__title/card__title.css');
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  padding: 20px 35px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: 'Inter', Arial, sans-serif;
+}

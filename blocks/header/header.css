@@ -1,0 +1,16 @@
+@import url('./__title/header__title.css');
+
+.header {
+  min-height: 120px;
+  font-family: 'Inter', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    min-height: 85px;
+  }
+}

@@ -1,0 +1,14 @@
+@import url('./_duplicate/button_duplicate.css');
+@import url('./_remove/button_remove.css');
+@import url('./_add/button_add.css');
+
+.button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.button:hover {
+    opacity: .7;
+}

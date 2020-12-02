@@ -1,0 +1,4 @@
+.button_remove {
+    background: transparent url('../../../images/remove.svg') center no-repeat;
+    background-size: cover;
+}

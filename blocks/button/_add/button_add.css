@@ -1,0 +1,4 @@
+.button_add {
+    background: transparent url('../../../images/add.svg') center no-repeat;
+    background-size: cover;
+}

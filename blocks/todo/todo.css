@@ -1,0 +1,16 @@
+@import url(./__form/todo__form.css);
+@import url(./__list/todo__list.css);
+@import url(./__item/todo__item.css);
+
+.todo {
+  display: grid;
+  grid-gap: 35px;
+  padding: 15px 0 36px;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+@media screen and (max-width: 568px) {
+  .todo {
+    padding: 15px 0 18px;
+  }
+}
