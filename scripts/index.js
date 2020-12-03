@@ -19,6 +19,12 @@ function composeItem(item){
     const itemElement = templateElement.cloneNode(true).content;
     const headerElement = itemElement.querySelector('.card__title');
     headerElement.textContent = item.title;
+    
+    itemElement.querySelector('.button_remove').addEventListener('click', (event) => {
+        const targetItemElement = event.target;
+        targetItemElement.closest('.card').remove();
+    })
+    
     return itemElement;
 }
 
