@@ -22,7 +22,15 @@ function composeItem(item){
     
     itemElement.querySelector('.button_remove').addEventListener('click', (event) => {
         const targetItemElement = event.target;
+        console.log(targetItemElement.closest('.card'))
         targetItemElement.closest('.card').remove();
+    })
+    
+    itemElement.querySelector('.button_duplicate').addEventListener('click', (event)=>{
+        const targetElement = event.target;
+        const targetItemText = targetElement.closest('.card').querySelector('.card__title').innerText;
+        const newItemElement = composeItem({ title: targetItemText })
+        listContainerElement.prepend(newItemElement)
     })
     
     return itemElement;
