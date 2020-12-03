@@ -8,6 +8,7 @@ const TODO_LIST = [
 
 const listContainerElement = document.querySelector('.todo__list');
 const inputElement = document.querySelector('input');
+const templateElement = document.querySelector('.template')
 
 function renderList() {
     const listItems = TODO_LIST.map(composeItem);
@@ -16,22 +17,10 @@ function renderList() {
 }
 
 function composeItem(item){
-    const cardItem = document.createElement('li')
-    cardItem.classList.add('todo__item', 'card')
-    const cardHeader = document.createElement('h2')
-    cardHeader.classList.add('card__title')
-    cardHeader.textContent = item.title;
-    const cardActions = document.createElement('div')
-    cardActions.classList.add('card__actions')
-    const duplicateButton = document.createElement('button')
-    duplicateButton.classList.add('button', 'button_duplicate')
-    const removeButton = document.createElement('button')
-    removeButton.classList.add('button', 'button_remove')
-
-    cardActions.append(duplicateButton, removeButton)
-    cardItem.append(cardHeader, cardActions)
-
-    return cardItem
+    const newItem = templateElement.content.cloneNode(true);
+    const headerElement = newItem.querySelector('.card__title');
+    headerElement.textContent = item.title;
+    return newItem;
 }
 
 function bindAddItemListener() {
