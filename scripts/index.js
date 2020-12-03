@@ -11,32 +11,38 @@ const inputElement = document.querySelector('.input');
 function renderList() {
     let listHTML = '';
 
-    listHTML = TODO_LIST.map(item => {
-        return `<li class="todo__item card">
-                <h2 class="card__title">${item.title}</h2>
-                <div class="card__actions">
-                  <button type="button" class="button button_duplicate"></button>
-                  <button type="button" class="button button_remove"></button>
-                </div>
-              </li>`
-    }).join('');
+    listHTML = TODO_LIST.map(composeItem);
 
-    listContainerElement.insertAdjacentHTML('afterbegin', listHTML)
+    listContainerElement.append(...listHTML)
+}
+
+function composeItem(item) {
+    const itemElement = document.createElement('li')
+    itemElement.classList.add('todo__item', 'card')
+    const headerElement = document.createElement('h2')
+    headerElement.classList.add('card__title')
+    headerElement.textContent = item.title
+    const actionsContainerItem = document.createElement('div')
+    actionsContainerItem.classList.add('card__actions')
+    const duplicateButtonElement = document.createElement('button')
+    duplicateButtonElement.classList.add('button', 'button_duplicate')
+    const removeButtonElement = document.createElement('button');
+    removeButtonElement.classList.add('button','button_remove')
+
+    actionsContainerItem.append(duplicateButtonElement, removeButtonElement)
+    itemElement.append(headerElement, actionsContainerItem)
+
+    return itemElement
 }
 
 function bindEventListeners() {
     const addButtonElement = document.querySelector('.button_add');
 
     addButtonElement.addEventListener('click', function () {
-        const newItem = `<li class="todo__item card">
-                <h2 class="card__title">${inputElement.value}</h2>
-                <div class="card__actions">
-                <button type="button" class="button button_duplicate"></button>
-                <button type="button" class="button button_remove"></button>
-                </div>
-            </li>`;
-
-        listContainerElement.insertAdjacentHTML('afterbegin', newItem)
+        const newItem = composeItem({ title: inputElement.value })
+        console.log(inputElement.value)
+        console.log(newItem)
+        listContainerElement.append(newItem)
     })
 }
 
