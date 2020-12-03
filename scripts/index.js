@@ -10,21 +10,28 @@ const listContainerElement = document.querySelector('.todo__list');
 const inputElement = document.querySelector('input');
 
 function renderList() {
-    let newHTML = '';
+    const listItems = TODO_LIST.map(composeItem);
 
-    newHTML = TODO_LIST.map(composeItemHTML).join('');
-
-    listContainerElement.insertAdjacentHTML('afterbegin', newHTML);
+    listContainerElement.append(...listItems);
 }
 
-function composeItemHTML(item) {
-    return `<li class="todo__item card">
-                    <h2 class="card__title">${item.title}</h2>
-                    <div class="card__actions">
-                        <button type="button" class="button button_duplicate"></button>
-                        <button type="button" class="button button_remove"></button>
-                    </div>
-                </li>`
+function composeItem(item){
+    const cardItem = document.createElement('li')
+    cardItem.classList.add('todo__item', 'card')
+    const cardHeader = document.createElement('h2')
+    cardHeader.classList.add('card__title')
+    cardHeader.textContent = item.title;
+    const cardActions = document.createElement('div')
+    cardActions.classList.add('card__actions')
+    const duplicateButton = document.createElement('button')
+    duplicateButton.classList.add('button', 'button_duplicate')
+    const removeButton = document.createElement('button')
+    removeButton.classList.add('button', 'button_remove')
+
+    cardActions.append(duplicateButton, removeButton)
+    cardItem.append(cardHeader, cardActions)
+
+    return cardItem
 }
 
 function bindAddItemListener() {
@@ -34,8 +41,8 @@ function bindAddItemListener() {
 
 function addNewItem(){
         const inputText = inputElement.value;
-        const newItemHTML = composeItemHTML({ title: inputText })
-        listContainerElement.insertAdjacentHTML('afterbegin', newItemHTML);
+        const newItemHTML = composeItem({ title: inputText })
+        listContainerElement.prepend(newItemHTML);
 }
 
 renderList();
