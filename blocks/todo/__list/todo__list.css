@@ -1,5 +1,7 @@
 .todo__list {
-  display: grid;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   justify-content: center;
   grid-gap: 20px;
   list-style-type: none;
