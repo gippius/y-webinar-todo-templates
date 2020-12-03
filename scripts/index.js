@@ -12,7 +12,6 @@ const templateElement = document.querySelector('.template')
 
 function renderList() {
     const listItems = TODO_LIST.map(composeItem);
-
     listContainerElement.append(...listItems);
 }
 
@@ -20,11 +19,15 @@ function composeItem({ title }){
     const newItem = templateElement.content.cloneNode(true);
     const headerElement = newItem.querySelector('.card__title');
     headerElement.textContent = title;
-    const removeButton = newItem.querySelector('.button_remove');
-    removeButton.addEventListener('click', removeItem);
-    const duplicateButton = newItem.querySelector('.button_duplicate')
-    duplicateButton.addEventListener('click', duplicateItem)
+    addRemoveAndDuplicateListenersToItem(newItem)
     return newItem;
+}
+
+function addRemoveAndDuplicateListenersToItem(item){       
+    const removeButton = item.querySelector('.button_remove');
+    removeButton.addEventListener('click', removeItem);
+    const duplicateButton = item.querySelector('.button_duplicate')
+    duplicateButton.addEventListener('click', duplicateItem)
 }
 
 function bindAddItemListener() {
@@ -49,7 +52,7 @@ function duplicateItem(event){
     const headerElement = targetItem.querySelector('.card__title');
     const title = headerElement.textContent;
     const newItem = composeItem({ title });
-    listContainerElement.prepend(newItem)
+    targetItem.after(newItem)
 }
 
 renderList();
